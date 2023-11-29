@@ -1,23 +1,33 @@
 import React from 'react';
 
 export function Login() {
+	function showInput(event: any) {
+		let inputValue = event.target.value;
+		console.log(inputValue);
+	}
 	return (
 		<form className="container w-50 login">
+			<h1>Log In</h1>
 			{/* <!-- User Name input --> */}
 			<div className="form-outline mb-4">
-				<input type="email" id="form2Example1" className="form-control logEmail" />
-				{/* <label className="form-label" for="form2Example1">Email Address</label> */}
+				<span>Email:</span>
+				<input
+					type="email"
+					id="form2Example1"
+					className="form-control logEmail"
+					onInput={showInput}
+				/>
 			</div>
 
 			{/* <!-- Password input --> */}
 			<div className="form-outline mb-4">
-				<input type="password" id="form2Example2" className="form-control logPassword" />
-				{/* <label className="form-label" for="form2Example2">Password</label> */}
-			</div>
-
-			{/* <!-- 2 column grid layout for inline styling --> */}
-			<div className="row mb-4">
-				<div className="col d-flex justify-content-center"></div>
+				<span>Password:</span>
+				<input
+					type="password"
+					id="form2Example2"
+					className="form-control logPassword"
+					onInput={showInput}
+				/>
 			</div>
 
 			{/* <!-- Submit button --> */}
@@ -27,5 +37,3 @@ export function Login() {
 		</form>
 	);
 }
-
-
