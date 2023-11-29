@@ -1,5 +1,11 @@
 import React from "react";
-
+import {
+  BrowserRouter as Router,
+  Routes as Switch,
+  Route,
+  Navigate,
+  Link
+} from "react-router-dom";
 export function Navbar(){ 
     return(
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -19,10 +25,10 @@ export function Navbar(){
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link" href="#">Login</a>
+              <a href="" className="nav-link"><Link to='/login' className="nav-link">Login</Link></a>
             </li>
             <li className="nav-item">
-              <a className="nav-link nav-link-reg" href="#">Register</a>
+            <a href="" className="nav-link"><Link to='/register' className="nav-link">Register</Link></a>
             </li>
           </ul>
         </div>

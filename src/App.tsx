@@ -3,6 +3,11 @@ import {Navbar} from './components/navbar';
 import { GetMovies } from './components/movies';
 import { GetGenres } from './components/genres';
 import { IEntity } from './types/types';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+} from 'react-router-dom';
 import './components/styles/index.css'
 function App() {
   const [movie ,setMovie] = useState([])
