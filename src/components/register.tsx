@@ -1,22 +1,37 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes as Switch, Route, Navigate, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { BrowserRouter as Router, Routes as Switch, useNavigate } from 'react-router-dom';
 export function Register() {
-	function showInput(event: any) {
-		let inputValue = event.target.value;
-		console.log(inputValue);
+	const navigate = useNavigate();
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+	async function handleSubmit(event: any) {
+		event.preventDefault();
+		const { data } = await axios.post('http://localhost:4000/api/users', {
+			name,
+			email,
+			password,
+		});
+
+		console.log('data: ', data);
+		console.log(name, email, password);
+
+		navigate('/login');
 	}
 
 	return (
-		<form className="container w-50 login">
+		<form className="container w-50 login" onSubmit={handleSubmit}>
 			<h1>Register</h1>
-			{/* <!-- User Name input --> */}
+			{/* <!-- Email input --> */}
 			<div className="form-outline mb-4">
 				<span>Email:</span>
 				<input
 					type="email"
 					id="form2Example1"
 					className="form-control logEmail"
-					onInput={showInput}
+					onChange={(event) => setEmail(event.target.value)}
 				/>
 			</div>
 
@@ -27,7 +42,7 @@ export function Register() {
 					type="text"
 					id="form2Example2"
 					className="form-control logName"
-					onInput={showInput}
+					onChange={(event) => setName(event.target.value)}
 				/>
 			</div>
 
@@ -36,14 +51,14 @@ export function Register() {
 				<span>Password:</span>
 				<input
 					type="password"
-					id="form2Example2"
+					id="form2Example3"
 					className="form-control logPassword"
-					onInput={showInput}
+					onChange={(event) => setPassword(event.target.value)}
 				/>
 			</div>
 
 			{/* <!-- Submit button --> */}
-			<button type="button" className="btn btn-primary btn-block mb-4 sing-in">
+			<button type="submit" className="btn btn-primary btn-block mb-4 sing-in">
 				Sign in
 			</button>
 		</form>
